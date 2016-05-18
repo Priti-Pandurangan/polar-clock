@@ -10,12 +10,26 @@ canvas.height = window.innerHeight
 var centerX = canvas.width / 2
 var centerY = canvas.height / 2
 
+var seconds = 0, minutes = 0, hours = 0;
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-	drawHand(200, Math.PI / 4, "red")
-	drawHand(150, Math.PI / 4, "blue")
-	drawHand(100, Math.PI / 4, "green")
+	drawHand(200, (2 * Math.PI / 60) * seconds, "red")
+	drawHand(150, (2 * Math.PI / 60) * minutes, "blue")
+	drawHand(100, (2 * Math.PI / 12) * hours, "green")
+
+	if (seconds == 59) {
+		seconds = 0
+		if (minutes == 59) {
+			minutes = 0
+			hours = (hours == 11) ? 0 : hours + 1
+		} else {
+			minutes = minutes + 1
+		}
+	} else {
+		seconds = seconds + 1
+	}
 }
 
 function drawHand(radius, theta, color, width) {
