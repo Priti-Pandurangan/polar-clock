@@ -39,9 +39,10 @@ function draw() {
 
     text = getTime(date.getHours(), date.getMinutes(), date.getSeconds())
 
-    ctx.font = "bold 40px Helvetica, Arial, sans-serif"
+    ctx.font = "40px Orbitron, Arial, sans-serif"
+    ctx.fillStyle = "#4E0B24"
     ctx.fillText(text, 140, 100)
-    ctx.fillStyle = "red"
+    
 }
 
 function drawHand(radius, theta, color, width) {
