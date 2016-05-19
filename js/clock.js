@@ -10,20 +10,23 @@ canvas.height = window.innerHeight
 var centerX = canvas.width / 2
 var centerY = canvas.height / 2
 
-var date
+var date = new Date()
 var text
-var seconds = 0, minutes = 0, hours = 0;
+var seconds = date.getSeconds()
+var minutes = date.getMinutes()
+var hours = date.getHours()
+
+if (hours > 11)
+    hours -= 12
 
 function draw() {
-    date = new Date()
-
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     
-    drawHand(200, (2 * Math.PI / 60) * date.getSeconds(), "#E26357")
+    drawHand(200, (2 * Math.PI / 60) * seconds, "#E26357")
     
-    drawHand(150, (2 * Math.PI / 60) * date.getMinutes(), "#B4DC66")
+    drawHand(150, (2 * Math.PI / 60) * minutes, "#B4DC66")
     
-    drawHand(100, (2 * Math.PI / 24) * date.getHours(), "black")
+    drawHand(100, (2 * Math.PI / 12) * hours, "black")
 
     if (seconds == 59) {
         seconds = 0
@@ -37,7 +40,7 @@ function draw() {
         seconds = seconds + 1
     }
 
-    text = getTime(date.getHours(), date.getMinutes(), date.getSeconds())
+    text = getTime(hours, minutes, seconds)
 
     ctx.font = "40px Orbitron, Arial, sans-serif"
     ctx.fillStyle = "#4E0B24"
