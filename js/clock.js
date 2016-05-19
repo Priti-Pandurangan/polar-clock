@@ -15,11 +15,15 @@ var text
 var seconds = 0, minutes = 0, hours = 0;
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    date = new Date()
 
-    drawHand(200, (2 * Math.PI / 60) * seconds, "#E26357")
-    drawHand(150, (2 * Math.PI / 60) * minutes, "#B4DC66")
-    drawHand(100, (2 * Math.PI / 12) * hours, "#CAF1EC")
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    
+    drawHand(200, (2 * Math.PI / 60) * date.getSeconds(), "#E26357")
+    
+    drawHand(150, (2 * Math.PI / 60) * date.getMinutes(), "#B4DC66")
+    
+    drawHand(100, (2 * Math.PI / 24) * date.getHours(), "black")
 
     if (seconds == 59) {
         seconds = 0
@@ -33,19 +37,18 @@ function draw() {
         seconds = seconds + 1
     }
 
-    date = new Date()
     text = getTime(date.getHours(), date.getMinutes(), date.getSeconds())
 
-    ctx.font = "30px Arial"
-    ctx.fillStyle = "black"
+    ctx.font = "bold 40px Helvetica, Arial, sans-serif"
     ctx.fillText(text, 140, 100)
+    ctx.fillStyle = "red"
 }
 
 function drawHand(radius, theta, color, width) {
-    width = width || 20
+    width = width || 35
     ctx.beginPath()
     ctx.arc(centerX, centerY, radius, 3 * Math.PI / 2, (3 * Math.PI / 2) + theta)
-    ctx.lineTo(centerX + (radius + width) * Math.cos((Math.PI / 2) - theta) , centerY - (radius + width) * Math.sin((Math.PI / 2) - theta))
+    ctx.lineTo(centerX + (radius + width) * Math.cos((Math.PI / 2) - theta), centerY - (radius + width) * Math.sin((Math.PI / 2) - theta))
     ctx.arc(centerX, centerY, radius + width, (3 * Math.PI / 2) + theta, 3 * Math.PI / 2, true)
     ctx.closePath()
 
@@ -64,11 +67,11 @@ function getTime(hours, minutes, seconds) {
         currentTime += ":0" + minutes
     else
         currentTime += ":" + minutes
-    if (seconds < 10) 
+    if (seconds < 10)
         currentTime += ":0" + seconds
     else
         currentTime += ":" + seconds
-        return currentTime
+    return currentTime
 }
 
 setInterval(draw, 1000)
