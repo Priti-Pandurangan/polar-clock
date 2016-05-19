@@ -55,19 +55,19 @@ function drawHand(radius, theta, color, width) {
 
 function getTime(hours, minutes, seconds) {
     var currentTime
-    
+
     if (hours < 10)
-        currentTime = "0" + hours.toString()
+        currentTime = "0" + hours
     else
-        currentTime = hours.toString()
+        currentTime = hours
     if (minutes < 10)
-        currentTime += ":0" + minutes.toString()
+        currentTime += ":0" + minutes
     else
-        currentTime += ":" + minutes.toString()
+        currentTime += ":" + minutes
     if (seconds < 10) 
-        currentTime += ":0" + seconds.toString()
+        currentTime += ":0" + seconds
     else
-        currentTime += ":" + seconds.toString()
+        currentTime += ":" + seconds
         return currentTime
 }
 
