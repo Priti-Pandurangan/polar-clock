@@ -25,9 +25,9 @@ var sin = Math.sin
 function draw() {
     clearScreen()
     
-    drawHand(200, (2 * PI / 60) * seconds, "#E26357")
-    drawHand(150, (2 * PI / 60) * minutes, "#B4DC66")
-    drawHand(100, (2 * PI / 12) * hours,   "#000000")
+    drawHand(200, (2 * PI / 60) * seconds, "#d33682")
+    drawHand(150, (2 * PI / 60) * minutes, "#268bd2")
+    drawHand(100, (2 * PI / 12) * hours,   "#859900")
 
     drawTime(hours, minutes, seconds)
   
@@ -54,9 +54,11 @@ function drawTime(hours, minutes, seconds) {
     timeString += (minutes < 10) ? ":0" + minutes : ":" + minutes
     timeString += (seconds < 10) ? ":0" + seconds : ":" + seconds
     
-    ctx.font = "40px Orbitron, Arial, sans-serif"
-    ctx.fillStyle = "#4E0B24"
-    ctx.fillText(timeString, 140, 100)
+    ctx.font = "32px Orbitron, Arial, sans-serif"
+    ctx.fillStyle = "#b58900"
+    ctx.textAlign = "center"
+    ctx.textBaseline = "middle"
+    ctx.fillText(timeString, centerX, centerY)
 }
 
 function clearScreen() {
